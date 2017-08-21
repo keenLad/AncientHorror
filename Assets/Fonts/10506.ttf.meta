@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 8ee15f24882e9464bb54f8adf5f707f6
+timeCreated: 1502390823
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: VEFlomasticaCyrillic
+  fontNames:
+  - VEFlomasticaCyrillic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

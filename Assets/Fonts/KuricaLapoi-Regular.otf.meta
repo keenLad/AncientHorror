@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 0342bbb07ef614053ae0f54798b7e17a
+timeCreated: 1502362233
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Kurica Lapoi
+  fontNames:
+  - Kurica Lapoi
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

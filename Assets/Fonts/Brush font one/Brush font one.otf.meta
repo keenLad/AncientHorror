@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: e91256a8fb68d4539a345b57deb7f0f6
+timeCreated: 1502362235
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Brush Font ?1
+  fontNames:
+  - Brush Font ?1
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

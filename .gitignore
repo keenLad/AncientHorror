@@ -1,0 +1,43 @@
+# =============== #
+# Unity generated #
+# =============== #
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Ll]ibrary/
+[Oo]utput/
+sysinfo.txt
+# =============== #
+# Rider Generated #
+# =============== #
+.idea/
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+[Ee]xported[Oo]bj/
+/*.userprefs
+/*.csproj
+/*.pidb
+/*.suo
+/*.sln*
+/*.user
+/*.unityproj
+/*.booproj
+*.suo
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store*
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+[Tt]humbs.db
+Assets/VSCode
+VSCode.meta
+Output/FurnitureShopLandingUI/android/sdpi/NoVariant/FurnitureShopLandingUI.unity3d
+Output/FurnitureShopLandingUI/ios/sdpi/NoVariant/FurnitureShopLandingUI.unity3d
+Output/ShoppingPlazaLandingUI/android/sdpi/NoVariant/ShoppingPlazaLandingUI.unity3d
+Output/ShoppingPlazaLandingUI/ios/sdpi/NoVariant/ShoppingPlazaLandingUI.unity3d
+Assets/ImportTools
