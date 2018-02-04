@@ -19,13 +19,14 @@ public class Preloader : MonoBehaviour {
 	private static readonly string DOCS_URI = "https://script.google.com/macros/s/AKfycbxOLElujQcy1-ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk/exec?id={0}{2}{1}";
     private static readonly string SHEET_ID = "1ZbroOoG2i6_XYlBWJ7tAk0w9zvBzSZUhMepOtAHzTzE";
 
-    private const string CARDS_SHEET = "location_cards";
-    private const string GATE_SHEET = "gate_cards";
-    private const string REGIONS_SHEET = "regions";
-    private const string LOCATIONS_SHEET = "locations";
-    private const string SPRITES_SHEET = "sprites";
-	private const string BOSSES_SHEET = "bosses";
-	private const string MYTH_SHEET = "myths";
+	public const string CARDS_SHEET = "location_cards";
+	public const string GATE_SHEET = "gate_cards";
+	public const string REGIONS_SHEET = "regions";
+	public const string LOCATIONS_SHEET = "locations";
+	public const string SPRITES_SHEET = "sprites";
+	public const string BOSSES_SHEET = "bosses";
+	public const string MYTH_SHEET = "myths";
+	public const string EVIDENCE_SHEET = "evidence";
 
 
     public event Action<float> OnProgressChanged;
@@ -50,6 +51,7 @@ public class Preloader : MonoBehaviour {
 		StartCoroutine(LoadFromSheet(SPRITES_SHEET));
 		StartCoroutine(LoadFromSheet(BOSSES_SHEET));
 		StartCoroutine(LoadFromSheet(MYTH_SHEET));
+		StartCoroutine(LoadFromSheet(EVIDENCE_SHEET));
 	}
 
 	public void LoadFromLocal(){
@@ -60,6 +62,7 @@ public class Preloader : MonoBehaviour {
 		StartCoroutine(LoadFromAssets(SPRITES_SHEET));
 		StartCoroutine(LoadFromAssets(BOSSES_SHEET));
 		StartCoroutine(LoadFromAssets(MYTH_SHEET));
+		StartCoroutine(LoadFromAssets(EVIDENCE_SHEET));
 	}
 
     IEnumerator LoadFromSheet(string type) {

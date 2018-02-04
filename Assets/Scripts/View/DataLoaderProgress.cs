@@ -12,23 +12,29 @@ public class DataLoaderProgress : MonoBehaviour {
 	[SerializeField]  Slider _slider;
 	[SerializeField]  ContentView _content;
 	[SerializeField] GameObject _localButton;
+	[SerializeField] BossSelectionView _bossView;
+
 
 	public GameSettings settings;
 
 	void Start () {
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		_localButton.SetActive (File.Exists (Application.persistentDataPath + "/location_cards.json"));
 		Preloader.instance.OnProgressChanged += PreloaderOnOnProgressChanged;
 		Preloader.instance.OnLoadComplete += PreloaderOnOnLoadComplete;
 	}
 
 	private void PreloaderOnOnLoadComplete() {
-		GameSettings.instance.currentBoss = GameSettings.instance.bosses [0];
+		_bossView.gameObject.SetActive (true);
+		_bossView.Init ();
 
-		Debug.Log (JsonConvert.SerializeObject(GameSettings.instance.activeMythses));
+		_bossView.OnBossSelected.AddListener(new UnityEngine.Events.UnityAction( () => {
+			_bossView.gameObject.SetActive (false);
+			this.gameObject.SetActive (false);
 
-		this.gameObject.SetActive(false);
-		_content.SetLocations();
-		_content.gameObject.SetActive(true);
+			_content.SetLocations ();
+			_content.gameObject.SetActive (true);
+		}));
 		
 	}
 

@@ -12,9 +12,10 @@ public class GameSettings {
     
     public static GameSettings instance = new GameSettings();
 
-    [JsonProperty("location_cards")]
+	[JsonProperty(Preloader.CARDS_SHEET)]
 	public List<Card> cards = new List<Card>();
-    [JsonProperty("gate_cards")]
+
+	[JsonProperty(Preloader.GATE_SHEET)]
     private List<Card> gateCards {
         set {
             if (cards == null) {
@@ -24,6 +25,16 @@ public class GameSettings {
             cards.AddRange(value);
         }
     }
+	[JsonProperty(Preloader.EVIDENCE_SHEET)]
+	private List<Card> evidenceCards {
+		set {
+			if (cards == null) {
+				cards = new List<Card>();
+			}
+
+			cards.AddRange(value);
+		}
+	}
     [JsonProperty]
 	public List<Location> locations = new List<Location>();
     [JsonProperty]
@@ -32,7 +43,7 @@ public class GameSettings {
 	public List<Sprite> sprites = new List<Sprite> ();
 	[JsonProperty]
 	public List<Boss> bosses = new List<Boss> ();
-	[JsonProperty("myths")]
+	[JsonProperty(Preloader.MYTH_SHEET)]
 	private List<Myth> _myths = new List<Myth> ();
 	[JsonProperty]
 	public Dictionary<int, string> extensions = new Dictionary<int, string> ();
@@ -45,7 +56,7 @@ public class GameSettings {
 		} 
 		set{ 
 			_currentBoss = value;
-			CreateMythDeck ();
+			SetRegionVisible (_currentBoss.regionId, true);
 		}
 	}
 
@@ -78,6 +89,10 @@ public class GameSettings {
         return locations.FirstOrDefault(location => location.id == id);
     }
 
+	public Region getRegion(int id) {
+		return regions.FirstOrDefault(region => region.id == id);
+	}
+
 	public Card GetCardById(int id){
 		return cards.FirstOrDefault(card => card.id == id);
 	}
@@ -108,6 +123,21 @@ public class GameSettings {
             _usedCards.Remove(card);
         }
     }
+
+	public void DeleteLocation(int locationId){
+		var locationCards = cards.Where(card => card.location == locationId).ToList();
+		foreach (var card in locationCards) {
+			_usedCards.Add (card);
+			cards.Remove (card);
+		}
+	}
+
+	void SetRegionVisible(int id, bool isVisible){
+		List<Location> regionLocations = locations.Where (location => location.region == id).ToList ();
+		foreach (var item in regionLocations) {
+			item.isHided = isVisible ? 0 : 1;
+		}
+	}
 
     public static GameSettings operator +(GameSettings a, GameSettings b) {
 
@@ -140,13 +170,21 @@ public class GameSettings {
 			List<Myth> result = new List<Myth> ();
 			for(int type = 0; type < round.Value.Count; type++) {
 				for (int count = 0; count < round.Value [type]; count++) {
-					Myth item = _myths.Where (myth => myth.type == type).OrderBy (o => UnityEngine.Random.value).FirstOrDefault ();
+					Myth item = _myths.Where (myth => myth.type == type + 1).OrderBy (o => UnityEngine.Random.value).FirstOrDefault ();
 					result.Add (item);
+					_myths.Remove (item);
 				}
 			}
-			//result = result.OrderBy( x => UnityEngine.Random.value ).ToList( );
+			result = result.OrderBy( x => UnityEngine.Random.value ).ToList( );
 			activeMythses.AddRange (result);
+
 		}
+
+		string log = "";
+		foreach (var item in activeMythses) {
+			log += item.ToString() + "\n";
+		}
+		Debug.Log (log);
 	}
     
     

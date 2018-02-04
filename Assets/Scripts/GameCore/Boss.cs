@@ -9,6 +9,11 @@ public class Boss {
 	[JsonProperty]
 	public string name { get; private set;}
 	[JsonProperty]
+	public int regionId { get; private set;}
+	[JsonProperty]
+	public int isEnabled { get; private set;}
+
+	[JsonProperty]
 	private string myth_1 { 
 		get{ 
 			return JsonConvert.SerializeObject(myths [0]);

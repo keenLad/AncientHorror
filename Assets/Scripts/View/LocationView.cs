@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using AncientHorror.GameCore;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class LocationView : MonoBehaviour {
 	[SerializeField] private Text _name;
 	[SerializeField] private Text _count;
 	[SerializeField] private Image _bg;
+	[SerializeField] private float _delay = 2f;
+	[SerializeField] private UnityEvent  OnLongPress;
 
 	private Location _location;
+	private Coroutine _delayRoutine;
+	private bool isCardNeeded = true;
 
 	public Location location {
 		get { return _location; }
@@ -20,7 +25,13 @@ public class LocationView : MonoBehaviour {
 	}
 
 	void Init() {
-		_name.text = location.name;
+		string regionName = GameSettings.instance.getRegion(location.region).name;
+
+		if (!string.IsNullOrEmpty (regionName)) {
+			regionName += "\n";
+		}
+
+		_name.text = regionName + location.name;
 		Color color = Color.white;
 		ColorUtility.TryParseHtmlString(location.spriteColor, out color);
 		_bg.color = color;
@@ -34,6 +45,10 @@ public class LocationView : MonoBehaviour {
 	}
 
 	public void GetCard() {
+		if (!isCardNeeded) {
+			return;
+		}
+		
 		CardView.instance.card = GameSettings.instance.GetCard(location.id);
 		SetCounter();
 	}
@@ -43,5 +58,24 @@ public class LocationView : MonoBehaviour {
 			GameSettings.instance.UpdateCards (location.id);
 			SetCounter ();
 		}
+	}
+
+	public void OnPointerDown(){
+		isCardNeeded = true;
+		_delayRoutine = StartCoroutine (StartWithDelay());
+	}
+
+	public void OnPointerUp(){
+		StopCoroutine (_delayRoutine);
+	}
+
+	public void OnPointerExit(){
+		StopCoroutine (_delayRoutine);
+	}
+
+	IEnumerator StartWithDelay(){
+		yield return new WaitForSeconds (_delay);
+		isCardNeeded = false;
+		OnLongPress.Invoke();
 	}
 }

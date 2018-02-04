@@ -11,8 +11,10 @@ public class ContentView : MonoBehaviour {
 	private Text _gatesButton;
 	[SerializeField]
 	private LocationView _expedition;
-
-	[SerializeField] private Transform _content;
+	[SerializeField]
+	private ModalDialog _confirmDialogPrefab;
+	[SerializeField] 
+	private Transform _content;
 
 	public void SetLocations() {
 		foreach (Location location in GameSettings.instance.locations) {
@@ -38,11 +40,32 @@ public class ContentView : MonoBehaviour {
 	}
 
 	public void GetExpedition(){
+		
 		Card card = GameSettings.instance.GetCardByRegion (5, false);
 		if (card != null) {
 			_expedition.location = GameSettings.instance.getLocation (card.location.Value);
 		} else {
 			_expedition.gameObject.SetActive (false);
 		}
+	}
+
+	public void ShowRemoveExpeditionConfirm(){
+		
+		ModalDialog confirmDialog = Instantiate<ModalDialog> (_confirmDialogPrefab);
+		confirmDialog.question = string.Format("Действительно удалить {0} из экспедиций?", _expedition.location.name);
+		confirmDialog.OnConfirm.AddListener (new UnityEngine.Events.UnityAction (RemoveExpedition));
+		RectTransform newTransform = (RectTransform)confirmDialog.transform;
+		RectTransform prefabTransform = (RectTransform)_confirmDialogPrefab.transform;
+
+		newTransform.SetParent (transform.parent.root, true);
+		newTransform.localScale = _confirmDialogPrefab.transform.localScale;
+		newTransform.sizeDelta = Vector2.zero;
+
+	}
+
+	public void RemoveExpedition(){
+		
+		GameSettings.instance.DeleteLocation (_expedition.location.id);
+		GetExpedition ();
 	}
 }

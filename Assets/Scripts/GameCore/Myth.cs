@@ -20,4 +20,9 @@ public class Myth {
 	public string processActionText { get; private set;}
 	[JsonProperty]
 	public int? extensionNum { get; private set;}
+
+	public override string ToString ()
+	{
+		return string.Format ("[Myth: id={0}, type={1}, name={2}]", id, type, name);
+	}
 }

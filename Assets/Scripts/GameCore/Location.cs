@@ -2,12 +2,7 @@
 
 namespace AncientHorror.GameCore {
     public class Location {
-//	"id": 1,
-//	"region": 1,
-//	"name": "город",
-//	"sprite": "",
-//	"spriteColor": "#4C4C4CFF",
-//	"isHided": 0
+
         [JsonProperty]
         public int id { get; private set; }
         [JsonProperty]
@@ -19,6 +14,11 @@ namespace AncientHorror.GameCore {
         [JsonProperty]
         public string spriteColor { get; private set; }
         [JsonProperty]
-        public int isHided { get; private set; }
+        public int isHided { get; set; }
+
+		public override string ToString ()
+		{
+			return string.Format ("[Location: id={0}, name={1}]", id, name);
+		}
     }
 }
