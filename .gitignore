@@ -23,7 +23,8 @@ sysinfo.txt
 /*.user
 /*.unityproj
 /*.booproj
-*.suo
+*.su
+.vs
 # ============ #
 # OS generated #
 # ============ #
@@ -36,8 +37,3 @@ ehthumbs.db
 [Tt]humbs.db
 Assets/VSCode
 VSCode.meta
-Output/FurnitureShopLandingUI/android/sdpi/NoVariant/FurnitureShopLandingUI.unity3d
-Output/FurnitureShopLandingUI/ios/sdpi/NoVariant/FurnitureShopLandingUI.unity3d
-Output/ShoppingPlazaLandingUI/android/sdpi/NoVariant/ShoppingPlazaLandingUI.unity3d
-Output/ShoppingPlazaLandingUI/ios/sdpi/NoVariant/ShoppingPlazaLandingUI.unity3d
-Assets/ImportTools
