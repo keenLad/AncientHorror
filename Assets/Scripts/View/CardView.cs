@@ -41,7 +41,12 @@ public class CardView : MonoBehaviour {
             _background.color = color;
         }
         gameObject.SetActive(true);
-		ShowButtons (true);
+
+		bool isButtonsNeed = !string.IsNullOrEmpty(card.successText) || !string.IsNullOrEmpty(card.failureText) ||
+			card.failureCardId.HasValue || card.successCardId.HasValue;
+
+
+		ShowButtons (isButtonsNeed);
 		transform.localPosition = Vector3.zero;
     }
 

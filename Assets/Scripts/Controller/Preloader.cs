@@ -15,18 +15,18 @@ public class Preloader : MonoBehaviour {
     }
 
     #endregion
+    [SerializeField] string DOCS_URI = "https://script.google.com/macros/s/AKfycbxOLElujQcy1-ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk/exec?id={0}{2}{1}";
+    [SerializeField] string SHEET_ID = "1ZbroOoG2i6_XYlBWJ7tAk0w9zvBzSZUhMepOtAHzTzE";
 
-	private static readonly string DOCS_URI = "https://script.google.com/macros/s/AKfycbxOLElujQcy1-ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk/exec?id={0}{2}{1}";
-    private static readonly string SHEET_ID = "1ZbroOoG2i6_XYlBWJ7tAk0w9zvBzSZUhMepOtAHzTzE";
-
-	public const string CARDS_SHEET = "location_cards";
-	public const string GATE_SHEET = "gate_cards";
-	public const string REGIONS_SHEET = "regions";
-	public const string LOCATIONS_SHEET = "locations";
-	public const string SPRITES_SHEET = "sprites";
-	public const string BOSSES_SHEET = "bosses";
-	public const string MYTH_SHEET = "myths";
-	public const string EVIDENCE_SHEET = "evidence";
+    //[SerializeField] string CARDS_SHEET = "location_cards";
+    //[SerializeField] string GATE_SHEET = "gate_cards";
+    //[SerializeField] string REGIONS_SHEET = "regions";
+    //[SerializeField] string LOCATIONS_SHEET = "locations";
+    //[SerializeField] string SPRITES_SHEET = "sprites";
+    //[SerializeField] string BOSSES_SHEET = "bosses";
+    //[SerializeField] string MYTH_SHEET = "myths";
+    //[SerializeField] string EVIDENCE_SHEET = "evidence";
+    [SerializeField] string [] sheets = { };
 
 
     public event Action<float> OnProgressChanged;
@@ -44,25 +44,15 @@ public class Preloader : MonoBehaviour {
     }
 
 	public void LoadFromWeb(){
-		StartCoroutine(LoadFromSheet(CARDS_SHEET));
-		StartCoroutine(LoadFromSheet(GATE_SHEET));
-		StartCoroutine(LoadFromSheet(REGIONS_SHEET));
-		StartCoroutine(LoadFromSheet(LOCATIONS_SHEET));
-		StartCoroutine(LoadFromSheet(SPRITES_SHEET));
-		StartCoroutine(LoadFromSheet(BOSSES_SHEET));
-		StartCoroutine(LoadFromSheet(MYTH_SHEET));
-		StartCoroutine(LoadFromSheet(EVIDENCE_SHEET));
+        foreach (var sheet in sheets) {
+            StartCoroutine (LoadFromSheet(sheet));
+        }
 	}
 
 	public void LoadFromLocal(){
-		StartCoroutine(LoadFromAssets(CARDS_SHEET));
-		StartCoroutine(LoadFromAssets(GATE_SHEET));
-		StartCoroutine(LoadFromAssets(REGIONS_SHEET));
-		StartCoroutine(LoadFromAssets(LOCATIONS_SHEET));
-		StartCoroutine(LoadFromAssets(SPRITES_SHEET));
-		StartCoroutine(LoadFromAssets(BOSSES_SHEET));
-		StartCoroutine(LoadFromAssets(MYTH_SHEET));
-		StartCoroutine(LoadFromAssets(EVIDENCE_SHEET));
+        foreach (var sheet in sheets) {
+            StartCoroutine (LoadFromAssets(sheet));
+        }
 	}
 
     IEnumerator LoadFromSheet(string type) {

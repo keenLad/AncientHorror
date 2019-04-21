@@ -12,10 +12,10 @@ public class GameSettings {
     
     public static GameSettings instance = new GameSettings();
 
-	[JsonProperty(Preloader.CARDS_SHEET)]
+    [JsonProperty("location_cards")]
 	public List<Card> cards = new List<Card>();
 
-	[JsonProperty(Preloader.GATE_SHEET)]
+    [JsonProperty("gate_cards")]
     private List<Card> gateCards {
         set {
             if (cards == null) {
@@ -25,7 +25,7 @@ public class GameSettings {
             cards.AddRange(value);
         }
     }
-	[JsonProperty(Preloader.EVIDENCE_SHEET)]
+    [JsonProperty("evidence")]
 	private List<Card> evidenceCards {
 		set {
 			if (cards == null) {
@@ -43,7 +43,7 @@ public class GameSettings {
 	public List<Sprite> sprites = new List<Sprite> ();
 	[JsonProperty]
 	public List<Boss> bosses = new List<Boss> ();
-	[JsonProperty(Preloader.MYTH_SHEET)]
+    [JsonProperty("myths")]
 	private List<Myth> _myths = new List<Myth> ();
 	[JsonProperty]
 	public Dictionary<int, string> extensions = new Dictionary<int, string> ();
